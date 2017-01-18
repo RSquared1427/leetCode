@@ -1,4 +1,5 @@
 class Solution(object)
+    # binary search is used for search a target in an ordered array, o(log n)
     def binary_search(self, nums, target):
         start, end = 0, len(nums)-1
         while start < end:
