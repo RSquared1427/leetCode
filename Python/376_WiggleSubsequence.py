@@ -17,4 +17,7 @@ class Solution(object):
 
         return count
         
-
+	def wiggleMaxLength(self, nums):
+    	    norep = [num for num, _ in itertools.groupby(nums)]
+    	    triples = zip(norep, norep[1:], norep[2:])
+            return sum((b>a) == (b>c) for a, b, c in triples) + len(norep[:2])
