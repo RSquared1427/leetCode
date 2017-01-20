@@ -4,21 +4,17 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        if len(nums)<2:
-            return len(nums)
-
-        count = 1
-        pre = 0
-        for i in range(len(nums)-1):
-            if nums[i+1]-nums[i] is not 0:
-                pre = nums[i+1]-nums[i]
-                break
-        if pre is not 0:
-            count = count + 1
-        for i in range(1,len(nums)-1):
-            if pre * (nums[i+1]-nums[i]) < 0:
+	norep = [num for num, _ in itertools.groupby(nums)]
+       
+        if len(norep)<2:
+            return len(norep)
+        count = 2
+        pre = norep[1] - norep[0]
+        for i in range(1,len(norep)-1):
+            if pre * (norep[i+1]-norep[i]) < 0:
                 count = count + 1
-                pre = nums[i+1]-nums[i]
-                
+                pre = norep[i+1]-norep[i]
+
         return count
+        
 
